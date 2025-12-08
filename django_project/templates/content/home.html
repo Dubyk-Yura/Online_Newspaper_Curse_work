@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Новинна Газета</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-4">
+    <header class="pb-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+            <span class="fs-4">Online Newspaper Daily</span>
+        </a>
+    </header>
+
+    <div class="p-5 mb-4 bg-white rounded-3 shadow-sm">
+        <div class="container-fluid py-2">
+            <h1 class="display-5 fw-bold">Свіжі новини</h1>
+            <p class="col-md-8 fs-4">Актуальна інформація, аналітика та термінові повідомлення.</p>
+
+            {% if not user.is_authenticated %}
+                <a class="btn btn-primary btn-lg" href="/admin/" role="button">Увійти (через Admin)</a>
+            {% else %}
+                <p>Вітаємо, <strong>{{ user.username }}</strong>!</p>
+                {% if user.subscription %}
+                    <span class="badge bg-success">Підписка: {{ user.subscription.type }}</span>
+                {% else %}
+                    <span class="badge bg-secondary">Без підписки</span>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row align-items-md-stretch">
+        {% for pub in news_list %}
+        <div class="col-md-6 mb-4">
+            <div class="h-100 p-4 bg-white border rounded-3 shadow-sm">
+                {% if pub.is_breaking %}
+                    <span class="badge bg-danger mb-2">BREAKING NEWS</span>
+                {% endif %}
+                {% if pub.is_exclusive %}
+                    <span class="badge bg-warning text-dark mb-2">⭐ Exclusive</span>
+                {% endif %}
+
+                <h2>{{ pub.title }}</h2>
+                <p class="text-muted">Автор: {{ pub.author.username }} | {{ pub.created_at|date:"d.m.Y H:i" }}</p>
+
+                <p>
+                    {{ pub.content|truncatewords:20 }}
+                </p>
+                <button class="btn btn-outline-secondary" type="button">Читати повністю</button>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                Новин поки що немає. Додайте їх через <a href="/admin/">Адмін-панель</a>.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <footer class="pt-3 mt-4 text-muted border-top">
+        &copy; 2025 Online Newspaper (Курсовий проєкт) | Базова вартість підписки: {{ site_price }} UAH
+        {% if maintenance %}
+            <div class="alert alert-warning mt-2">🚧 Сайт у режимі технічного обслуговування</div>
+        {% endif %}
+    </footer>
+</div>
+
+</body>
+</html>

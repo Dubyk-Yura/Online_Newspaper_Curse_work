@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from core.interfaces import IObserver
 
 
@@ -8,24 +9,24 @@ class User(AbstractUser, IObserver):
     Base User model, extended from Django's AbstractUser.
     Implements the IObserver interface.
 
-    NOTE: M2M fields (groups, user_permissions) are explicitly defined 
+    NOTE: M2M fields (groups, user_permissions) are explicitly defined
     to resolve conflicts in modular architectures (using 'through')
     """
-    is_editor = models.BooleanField(default=False, verbose_name="Editor")
-    is_admin = models.BooleanField(default=False, verbose_name="Administrator")
+    is_editor = models.BooleanField(default=False, verbose_name=_("Editor"))
+    is_admin = models.BooleanField(default=False, verbose_name=_("Administrator"))
 
     groups = models.ManyToManyField(
         Group,
-        verbose_name=('groups'),
+        verbose_name=_('groups'),
         blank=True,
-        help_text=('The groups this user belongs to.'),
+        help_text=_('The groups this user belongs to.'),
         related_name="user_groups",
     )
     user_permissions = models.ManyToManyField(
         Permission,
-        verbose_name=('user permissions'),
+        verbose_name=_('user permissions'),
         blank=True,
-        help_text=('Specific permissions for this user.'),
+        help_text=_('Specific permissions for this user.'),
         related_name="user_permissions",
     )
 
@@ -35,5 +36,5 @@ class User(AbstractUser, IObserver):
 
     class Meta:
         app_label = 'users'
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
+        verbose_name = _('User')
+        verbose_name_plural = _('Users')
