@@ -1,19 +1,23 @@
-{% extends 'base.html' %} {% block title %}Головна - Online Newspaper{% endblock %} {% block content %}
+{% extends 'base.html' %}
+
+{% block title %}Головна - Online Newspaper{% endblock %}
+
+{% block content %}
 
 {% if news_list %}
-{% for news in news_list %}
-{% if news.is_breaking and forloop.first %}
-<div class="bg-danger text-white py-2 mb-3 text-center fw-bold shadow-sm">
-    <div class="container d-flex justify-content-center align-items-center">
-        <span class="me-2 fs-4">🔥</span>
-        <span class="text-uppercase me-3">Breaking News:</span>
-        <a href="{% url 'publication_detail' news.pk %}" class="text-white text-decoration-underline">
-            {{ news.title }}
-        </a>
-    </div>
-</div>
-{% endif %}
-{% endfor %}
+    {% for news in news_list %}
+        {% if news.is_breaking and forloop.first %}
+        <div class="bg-danger text-white py-2 mb-3 text-center fw-bold shadow-sm">
+            <div class="container d-flex justify-content-center align-items-center">
+                <span class="me-2 fs-4">🔥</span>
+                <span class="text-uppercase me-3">Breaking News:</span>
+                <a href="{% url 'publication_detail' news.pk %}" class="text-white text-decoration-underline">
+                    {{ news.title }}
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
 {% endif %}
 
 <div class="container py-4">
@@ -24,35 +28,34 @@
             <p class="col-md-8 fs-4">Актуальна інформація, аналітика та термінові повідомлення.</p>
 
             {% if not user.is_authenticated %}
-            <p>Увійдіть, щоб отримати повний доступ до матеріалів.</p>
-            <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Увійти</a>
-            <a class="btn btn-outline-secondary btn-lg ms-2" href="{% url 'register' %}" role="button">Реєстрація</a>
+                <p>Увійдіть, щоб отримати повний доступ до матеріалів.</p>
+                <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Увійти</a>
+                <a class="btn btn-outline-secondary btn-lg ms-2" href="{% url 'register' %}" role="button">Реєстрація</a>
             {% else %}
-            <p class="fs-5">Вітаємо, <strong>{{ user.username }}</strong>!</p>
+                <p class="fs-5">Вітаємо, <strong>{{ user.username }}</strong>!</p>
 
-            {% if user.subscription %}
-            <span class="badge bg-success fs-6">
+                {% if user.subscription %}
+                    <span class="badge bg-success fs-6">
                         Ваш план: {{ user.subscription.plan.name|default:"Невідомий" }}
                     </span>
-            {% if user.subscription.is_active %}
-            <span class="badge bg-info text-dark">Активна</span>
-            {% else %}
-            <a href="{% url 'pricing' %}" class="text-decoration-none" title="Натисніть, щоб поновити">
-                <span class="badge bg-danger">Неактивна (Поновити)</span>
-            </a>
-            {% endif %}
-            {% else %}
-            <span class="badge bg-secondary">Без підписки</span>
-            <a href="/admin/subscriptions/usersubscription/add/"
-               class="btn btn-sm btn-outline-primary ms-2">Оформити</a>
-            {% endif %}
+                    {% if user.subscription.is_active %}
+                        <span class="badge bg-info text-dark">Активна</span>
+                    {% else %}
+                        <a href="{% url 'pricing' %}" class="text-decoration-none" title="Натисніть, щоб поновити">
+                            <span class="badge bg-danger">Неактивна (Поновити)</span>
+                        </a>
+                    {% endif %}
+                {% else %}
+                    <span class="badge bg-secondary">Без підписки</span>
+                    <a href="/admin/subscriptions/usersubscription/add/" class="btn btn-sm btn-outline-primary ms-2">Оформити</a>
+                {% endif %}
             {% endif %}
         </div>
     </div>
 
-    <div class="row align-items-md-stretch">
+    <div class="row align-items-md-stretch" id="news-container">
         {% for pub in news_list %}
-        <div class="col-md-6 mb-4">
+        <div class="col-md-6 mb-4 news-item">
             <div class="h-100 p-4 bg-white border rounded-3 shadow-sm d-flex flex-column">
                 <div class="mb-2">
                     {% if pub.is_breaking %}
@@ -78,25 +81,87 @@
                     {{ pub.content|truncatewords:20 }}
                 </p>
 
-                <div class="mt-auto d-flex gap-2"><a href="{% url 'publication_detail' pub.pk %}"
-                                                     class="btn btn-outline-primary flex-grow-1">
-                    {% if pub.is_exclusive %}Читати (Premium){% else %}Читати повністю{% endif %}
-                </a>
+                <div class="mt-auto d-flex gap-2">
+                    <a href="{% url 'publication_detail' pub.pk %}" class="btn btn-outline-primary flex-grow-1">
+                        {% if pub.is_exclusive %}Читати (Premium){% else %}Читати повністю{% endif %}
+                    </a>
+
+                    {% if user.is_authenticated %}
+                        {% if pub in user.bookmarks.all %}
+                             <a href="{% url 'toggle_bookmark' pub.pk %}" class="btn btn-warning" title="Прибрати з закладок">
+                                <i class="fas fa-bookmark"></i>
+                            </a>
+                        {% else %}
+                            <a href="{% url 'toggle_bookmark' pub.pk %}" class="btn btn-outline-secondary" title="В закладки">
+                                <i class="far fa-bookmark"></i>
+                            </a>
+                        {% endif %}
+                    {% endif %}
 
                     {% if user.is_authenticated and user == pub.author and user.is_editor or user.is_superuser %}
                     <a href="{% url 'edit_publication' pub.pk %}" class="btn btn-warning">✏️ Редагувати</a>
                     {% endif %}
-
                 </div>
             </div>
         </div>
         {% empty %}
         <div class="col-12">
             <div class="alert alert-info text-center">
-                Новин поки що немає. Завітайте пізніше або додайте їх через Адмін-панель.
+                Новин поки що немає
             </div>
         </div>
         {% endfor %}
     </div>
+
+    {% if page_obj.has_next %}
+    <div class="text-center mt-4 mb-5">
+        <button id="load-more-btn" class="btn btn-primary rounded-pill px-4 shadow-sm"
+                data-next-page="{{ page_obj.next_page_number }}">
+            Завантажити більше новин
+        </button>
+    </div>
+    {% endif %}
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const loadBtn = document.getElementById('load-more-btn');
+        const container = document.getElementById('news-container');
+
+        if (loadBtn) {
+            loadBtn.addEventListener('click', function () {
+                const nextPage = this.getAttribute('data-next-page');
+                const url = `?page=${nextPage}`;
+
+                const originalText = this.innerText;
+                this.innerText = "Завантаження...";
+                this.disabled = true;
+
+                fetch(url)
+                    .then(response => response.text())
+                    .then(html => {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, 'text/html');
+
+                        const newItems = doc.querySelectorAll('.news-item');
+
+                        newItems.forEach(item => container.appendChild(item));
+
+                        const newBtn = doc.getElementById('load-more-btn');
+                        if (newBtn) {
+                            loadBtn.setAttribute('data-next-page', newBtn.getAttribute('data-next-page'));
+                            loadBtn.innerText = originalText;
+                            loadBtn.disabled = false;
+                        } else {
+                            loadBtn.remove();
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Error loading news:', err);
+                        loadBtn.innerText = "Помилка";
+                    });
+            });
+        }
+    });
+</script>
 {% endblock %}

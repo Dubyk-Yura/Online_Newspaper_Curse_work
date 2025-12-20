@@ -37,6 +37,13 @@ class User(AbstractUser, IObserver):
         verbose_name=_("Following Authors")
     )
 
+    bookmarks = models.ManyToManyField(
+        'content.Publication',
+        related_name='bookmarked_by',
+        blank=True,
+        verbose_name=_("Bookmarks")
+    )
+
     def update(self, message: str):
         """Implementation of the IObserver update method."""
         print(f"[Notification to {self.username}]: {message}")

@@ -57,13 +57,6 @@ def logout_view(request):
 
 
 @login_required
-def profile(request):
-    return render(request, 'users/profile.html', {
-        'user': request.user
-    })
-
-
-@login_required
 def toggle_follow(request, author_id):
     author = get_object_or_404(User, id=author_id)
 
@@ -80,6 +73,7 @@ def toggle_follow(request, author_id):
 
     return redirect(request.META.get('HTTP_REFERER', 'home'))
 
+
 @login_required
 def profile_view(request):
     if request.method == 'POST':
@@ -91,25 +85,12 @@ def profile_view(request):
     else:
         form = UserUpdateForm(instance=request.user)
 
-    return render(request, 'users/profile.html', {'form': form})
-
-
-@login_required
-def profile_view(request):
-    if request.method == 'POST':
-        form = UserUpdateForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Профіль оновлено!')
-            return redirect('profile')
-    else:
-        form = UserUpdateForm(instance=request.user)
-
-    subscribed_authors = []
+    subscribed_authors = request.user.following.all()
 
     context = {
         'form': form,
-        'subscribed_authors': subscribed_authors
+        'subscribed_authors': subscribed_authors,
+        'user': request.user
     }
 
     return render(request, 'users/profile.html', context)

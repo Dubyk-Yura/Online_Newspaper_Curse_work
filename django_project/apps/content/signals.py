@@ -9,48 +9,6 @@ from apps.users.models import User
 #Realization of OBSERVER
 @receiver(post_save, sender=Publication)
 def notify_subscribers(sender, instance, created, **kwargs):
-    if instance.is_breaking:
-
-        print(f"\n--- [OBSERVER TRIGGERED] ---")
-        action_type = "Створено" if created else "Оновлено"
-        print(f"Подія: {action_type} термінову новину: {instance.title}")
-
-        if instance.is_exclusive:
-            print("Тип новини: Premium. Розсилка тільки для підписників.")
-            subscribers = User.objects.filter(subscription__is_active=True, email__isnull=False)
-        else:
-            print("Тип новини: Public. Розсилка для всіх користувачів.")
-            subscribers = User.objects.filter(email__isnull=False)
-
-        recipient_list = [user.email for user in subscribers if user.email]
-
-        if recipient_list:
-            print(f"Отримувачі ({len(recipient_list)}): {recipient_list}")
-
-            prefix = "PREMIUM" if instance.is_exclusive else " BREAKING"
-            subject = f"{prefix}: {instance.title}"
-
-            message = (
-                f"Вітаємо!\n\n"
-                f"Важливе повідомлення:\n"
-                f"{instance.title}\n\n"
-                f"{instance.content[:200]}...\n\n"
-                f"Читайте повну версію на сайті."
-            )
-
-            send_mail(
-                subject,
-                message,
-                settings.DEFAULT_FROM_EMAIL,
-                recipient_list,
-                fail_silently=False,
-            )
-        else:
-            print("Не знайдено користувачів з email для розсилки.")
-
-
-@receiver(post_save, sender=Publication)
-def notify_subscribers(sender, instance, created, **kwargs):
     if not created:
         return
 
