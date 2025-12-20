@@ -29,10 +29,37 @@ class User(AbstractUser, IObserver):
         help_text=_('Specific permissions for this user.'),
         related_name="user_permissions",
     )
+    following = models.ManyToManyField(
+        'self',
+        symmetrical=False,
+        related_name='followers',
+        blank=True,
+        verbose_name=_("Following Authors")
+    )
 
     def update(self, message: str):
         """Implementation of the IObserver update method."""
         print(f"[Notification to {self.username}]: {message}")
+
+    def save(self, *args, **kwargs):
+        """
+        Automatic synchronization of the is_admin and is_superuser fields.
+        """
+
+        if not self.pk:
+            if self.is_superuser:
+                self.is_admin = True
+
+        else:
+            if self.is_admin:
+                self.is_superuser = True
+                self.is_staff = True
+            else:
+                self.is_superuser = False
+                self.is_staff = False
+                # if self.is_editor: self.is_staff = True)
+
+        super().save(*args, **kwargs)
 
     class Meta:
         app_label = 'users'

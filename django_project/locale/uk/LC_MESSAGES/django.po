@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-08 03:35+0200\n"
+"POT-Creation-Date: 2025-12-13 15:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,8 +23,9 @@ msgstr ""
 
 #: .\apps\content\apps.py:8
 #, fuzzy
+#| msgid "Add Publication"
 msgid "Content and Publications"
-msgstr "Контент та Публікації"
+msgstr "Додати Публікацію"
 
 #: .\apps\content\models.py:9 .\apps\subscriptions\models.py:9
 msgid "Name"
@@ -193,6 +194,3 @@ msgstr "Українська"
 #: .\config\settings.py:25
 msgid "English"
 msgstr "Англійська"
-
-msgid "Add Publication"
-msgstr "Додати Публікацію"

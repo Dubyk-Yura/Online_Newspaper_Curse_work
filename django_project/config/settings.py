@@ -63,7 +63,6 @@ INSTALLED_APPS = [
     'config.apps.ConfigConfig',
     'apps.content.apps.ContentConfig',
     'apps.subscriptions.apps.SubscriptionsConfig',
-    'apps.notifications.apps.NotificationsConfig',
     'apps.users.apps.UsersConfig',
 ]
 
@@ -122,9 +121,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
@@ -174,3 +170,6 @@ JAZZMIN_UI_TWEAKS = {
     "theme": "flatly",
     "navbar": "navbar-dark",
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'news@newspaper.com'

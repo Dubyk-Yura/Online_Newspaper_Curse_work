@@ -6,3 +6,6 @@ class ContentConfig(AppConfig):
     name = 'apps.content'
     label = 'content'
     verbose_name = _('Content and Publications')
+
+    def ready(self):
+        import apps.content.signals

@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            
+            <h1 class="mb-3">{{ post.title }}</h1>
+            <p class="text-muted">
+                Автор: <strong>{{ post.author.username }}</strong>
+
+                {% if user.is_authenticated and user != post.author %}
+                    {% if post.author in user.following.all %}
+                        <a href="{% url 'toggle_follow' post.author.id %}" class="btn btn-sm btn-outline-danger ms-2">Відписатися</a>
+                    {% else %}
+                        <a href="{% url 'toggle_follow' post.author.id %}" class="btn btn-sm btn-outline-primary ms-2">🔔 Стежити</a>
+                    {% endif %}
+                {% endif %}
+
+                | {{ post.created_at|date:"d.m.Y H:i" }} ...
+            </p>
+            <hr>
+
+            {% if has_access %}
+                <div class="article-content" style="font-size: 1.1rem; line-height: 1.6;">
+                    {{ post.content|linebreaks }}
+                </div>
+            {% else %}
+                <div class="article-preview">
+                    <p>{{ post.content|truncatewords:30 }}...</p>
+                    
+                    <div class="alert alert-warning text-center mt-4 p-5">
+                        <h4>🔒 Ця стаття доступна тільки для підписників</h4>
+                        <p>Оформіть підписку, щоб читати ексклюзивні аналітичні матеріали.</p>
+                        <a href="{% url 'pricing' %}" class="btn btn-primary btn-lg mt-2">Оформити підписку</a>
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="mt-4">
+                <a href="{% url 'home' %}" class="btn btn-outline-secondary">&larr; Назад до новин</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

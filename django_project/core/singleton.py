@@ -27,11 +27,19 @@ class SystemConfig:
             cls._instance.load_from_db()
         return cls._instance
 
-    @staticmethod
-    def get_instance():
-        if SystemConfig._instance is None:
-            SystemConfig()
-        return SystemConfig._instance
+    @classmethod
+    def get_instance(cls):
+        from config.models import GlobalSettings
+
+        if cls._instance is None:
+            obj, created = GlobalSettings.objects.get_or_create(pk=1)
+            cls._instance = obj
+
+        return cls._instance
+
+    @classmethod
+    def clear_cache(cls):
+        cls._instance = None
 
     def load_from_db(self):
         SettingsModel = get_global_settings_model()
