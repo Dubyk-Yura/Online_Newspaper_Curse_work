@@ -34,8 +34,16 @@ class Publication(models.Model, IPublication):
     is_exclusive = models.BooleanField(default=False, verbose_name=_('Exclusive'))
     is_breaking = models.BooleanField(default=False, verbose_name=_('Breaking News'))
     urgency_level = models.IntegerField(default=0, verbose_name=_('Urgency Level'))
-    type = models.CharField(max_length=20, default='article', verbose_name=_('Type'))
-
+    TYPE_CHOICES = [
+        ('article', _('Article')),
+        ('breaking_news', _('Breaking_News')),
+    ]
+    type = models.CharField(
+        max_length=20,
+        choices=TYPE_CHOICES,
+        default='article',
+        verbose_name=_('Type')
+    )
     def publish(self):
         """Implementation of the publish method."""
         print(f"Publicizing: {self.title}")

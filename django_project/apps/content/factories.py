@@ -3,31 +3,36 @@ from .models import Publication
 from django.db import models
 
 class Content(ABC):
-    """Abstract Factory. Defines the contract for content creation"""
+    """Abstract Factory Interface"""
     @abstractmethod
-    def create_publication(self, author: models.Model, title: str, content: str, **kwargs) -> Publication:
+    def create_publication(self, author: models.Model, **kwargs) -> Publication:
         pass
 
+
 class ArticleFactory(Content):
-    """Concrete Factory: Creates standard long-form articles"""
-    def create_publication(self, author: models.Model, title: str, content: str, **kwargs) -> Publication:
+    """Concrete Factory: Creates standard articles"""
+
+    def create_publication(self, author: models.Model, **kwargs) -> Publication:
+        kwargs.pop('is_breaking', None)
+
         return Publication.objects.create(
             author=author,
-            title=title,
-            content=content,
             type='article',
-            is_exclusive=kwargs.get('is_exclusive', False)
+            is_breaking=False,
+            **kwargs
         )
 
+
 class BreakingNewsFactory(Content):
-    """Concrete Factory: Creates urgent, short-form breaking news items."""
-    def create_publication(self, author: models.Model, title: str, content: str, **kwargs) -> Publication:
-        # Note: Saving with is_breaking=True will trigger the Observer Signal
+    """Concrete Factory: Creates Breaking News"""
+
+    def create_publication(self, author: models.Model, **kwargs) -> Publication:
+        kwargs.pop('is_breaking', None)
+
         return Publication.objects.create(
             author=author,
-            title=title,
-            content=content,
             type='breaking_news',
             is_breaking=True,
-            urgency_level=kwargs.get('urgency_level', 5)
+            urgency_level=kwargs.get('urgency_level', 5),
+            **kwargs
         )

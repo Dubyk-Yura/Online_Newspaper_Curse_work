@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Avg
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
-
+from .factories import ArticleFactory, BreakingNewsFactory
 from apps.subscriptions.models import UserSubscription
 from core.singleton import SystemConfig
 from .forms import PublicationForm, CommentForm, RatingForm
@@ -39,9 +39,9 @@ def home_page(request):
             Q(content__icontains=query)
         )
         if not news_list.exists():
-             search_message = f"За запитом '{query}' нічого не знайдено."
+            search_message = f"За запитом '{query}' нічого не знайдено."
         else:
-             search_message = f"Результати пошуку для: '{query}'"
+            search_message = f"Результати пошуку для: '{query}'"
 
     from django.core.paginator import Paginator
     paginator = Paginator(news_list, 8)
@@ -70,12 +70,24 @@ def is_editor_check(user):
 def add_publication(request):
     if request.method == 'POST':
         form = PublicationForm(request.POST)
-        if form.is_valid():
-            publication = form.save(commit=False)
-            publication.author = request.user
-            publication.save()
 
-            messages.success(request, f"Новину '{publication.title}' успішно створено!")
+        if form.is_valid():
+            data = form.cleaned_data
+
+            factory_map = {
+                True: BreakingNewsFactory(),
+                False: ArticleFactory()
+            }
+
+            selected_factory = factory_map[data.get('is_breaking', False)]
+
+            publication = selected_factory.create_publication(
+                author=request.user,
+                **data
+            )
+
+            messages.success(request,
+                             f"Публікацію '{publication.title}' успішно створено (Тип: {publication.get_type_display()})!")
             return redirect('home')
     else:
         form = PublicationForm()
