@@ -6,9 +6,13 @@ from django.conf import settings
 from .models import Publication
 from apps.users.models import User
 
-#Realization of OBSERVER
+
+# Realization of OBSERVER
 @receiver(post_save, sender=Publication)
-def notify_subscribers(sender, instance, created, **kwargs):
+def notify_subscribers(sender, instance, created, raw=False, **kwargs):
+    if raw:
+        return
+
     if not created:
         return
 
