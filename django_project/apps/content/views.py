@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.core.paginator import Paginator
 from django.db.models import Avg
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
@@ -25,11 +26,7 @@ def articles_by_category(request, slug):
 
 
 def home_page(request):
-    """
-    Render main page with news list and Search Logic
-    """
     news_list = Publication.objects.all().order_by('-created_at')
-
     query = request.GET.get('q')
     search_message = None
 
@@ -43,7 +40,20 @@ def home_page(request):
         else:
             search_message = f"Результати пошуку для: '{query}'"
 
-    from django.core.paginator import Paginator
+    recommended_news = []
+
+    if request.user.is_authenticated:
+        fav_categories = request.user.bookmarks.values_list('category', flat=True)
+        fav_authors = request.user.following.values_list('id', flat=True)
+
+        if fav_categories or fav_authors:
+            recommended_news = Publication.objects.filter(
+                Q(category__in=fav_categories) |
+                Q(author__in=fav_authors)
+            ).exclude(
+                id__in=request.user.bookmarks.values_list('id', flat=True)
+            ).distinct().order_by('-created_at')[:3]
+
     paginator = Paginator(news_list, 8)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -53,6 +63,7 @@ def home_page(request):
     context = {
         'news_list': page_obj,
         'page_obj': page_obj,
+        'recommended_news': recommended_news,
         'site_price': config.base_subscription_price,
         'maintenance': config.maintenance_mode,
         'page_title': search_message if search_message else "Свіжі новини"

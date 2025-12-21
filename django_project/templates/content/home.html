@@ -5,19 +5,19 @@
 {% block content %}
 
 {% if news_list %}
-    {% for news in news_list %}
-        {% if news.is_breaking and forloop.first %}
-        <div class="bg-danger text-white py-2 mb-3 text-center fw-bold shadow-sm">
-            <div class="container d-flex justify-content-center align-items-center">
-                <span class="me-2 fs-4">🔥</span>
-                <span class="text-uppercase me-3">Breaking News:</span>
-                <a href="{% url 'publication_detail' news.pk %}" class="text-white text-decoration-underline">
-                    {{ news.title }}
-                </a>
-            </div>
-        </div>
-        {% endif %}
-    {% endfor %}
+{% for news in news_list %}
+{% if news.is_breaking and forloop.first %}
+<div class="bg-danger text-white py-2 mb-3 text-center fw-bold shadow-sm">
+    <div class="container d-flex justify-content-center align-items-center">
+        <span class="me-2 fs-4">🔥</span>
+        <span class="text-uppercase me-3">Breaking News:</span>
+        <a href="{% url 'publication_detail' news.pk %}" class="text-white text-decoration-underline">
+            {{ news.title }}
+        </a>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
 {% endif %}
 
 <div class="container py-4">
@@ -28,32 +28,56 @@
             <p class="col-md-8 fs-4">Актуальна інформація, аналітика та термінові повідомлення.</p>
 
             {% if not user.is_authenticated %}
-                <p>Увійдіть, щоб отримати повний доступ до матеріалів.</p>
-                <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Увійти</a>
-                <a class="btn btn-outline-secondary btn-lg ms-2" href="{% url 'register' %}" role="button">Реєстрація</a>
+            <p>Увійдіть, щоб отримати повний доступ до матеріалів.</p>
+            <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Увійти</a>
+            <a class="btn btn-outline-secondary btn-lg ms-2" href="{% url 'register' %}" role="button">Реєстрація</a>
             {% else %}
-                <p class="fs-5">Вітаємо, <strong>{{ user.username }}</strong>!</p>
+            <p class="fs-5">Вітаємо, <strong>{{ user.username }}</strong>!</p>
 
-                {% if user.subscription %}
-                    <span class="badge bg-success fs-6">
+            {% if user.subscription %}
+            <span class="badge bg-success fs-6">
                         Ваш план: {{ user.subscription.plan.name|default:"Невідомий" }}
                     </span>
-                    {% if user.subscription.is_active %}
-                        <span class="badge bg-info text-dark">Активна</span>
-                    {% else %}
-                        <a href="{% url 'pricing' %}" class="text-decoration-none" title="Натисніть, щоб поновити">
-                            <span class="badge bg-danger">Неактивна (Поновити)</span>
-                        </a>
-                    {% endif %}
-                {% else %}
-                    <span class="badge bg-secondary">Без підписки</span>
-                    <a href="/admin/subscriptions/usersubscription/add/" class="btn btn-sm btn-outline-primary ms-2">Оформити</a>
-                {% endif %}
+            {% if user.subscription.is_active %}
+            <span class="badge bg-info text-dark">Активна</span>
+            {% else %}
+            <a href="{% url 'pricing' %}" class="text-decoration-none" title="Натисніть, щоб поновити">
+                <span class="badge bg-danger">Неактивна (Поновити)</span>
+            </a>
+            {% endif %}
+            {% else %}
+            <span class="badge bg-secondary">Без підписки</span>
+            <a href="/admin/subscriptions/usersubscription/add/"
+               class="btn btn-sm btn-outline-primary ms-2">Оформити</a>
+            {% endif %}
             {% endif %}
         </div>
     </div>
 
     <div class="row align-items-md-stretch" id="news-container">
+        {% if recommended_news %}
+        <div class="alert alert-light border shadow-sm mb-4">
+            <h5 class="text-primary"><i class="fas fa-magic me-2"></i>Рекомендовано для Вас</h5>
+            <div class="row">
+                {% for rec in recommended_news %}
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 bg-light">
+                        <div class="card-body p-2">
+                            <h6 class="card-title">
+                                <a href="{% url 'publication_detail' rec.pk %}" class="text-decoration-none text-dark">
+                                    {{ rec.title|truncatechars:40 }}
+                                </a>
+                            </h6>
+                            <small class="text-muted">
+                                <i class="fas fa-tag me-1"></i>{{ rec.category.name|default:"General" }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
         {% for pub in news_list %}
         <div class="col-md-6 mb-4 news-item">
             <div class="h-100 p-4 bg-white border rounded-3 shadow-sm d-flex flex-column">
@@ -87,15 +111,15 @@
                     </a>
 
                     {% if user.is_authenticated %}
-                        {% if pub in user.bookmarks.all %}
-                             <a href="{% url 'toggle_bookmark' pub.pk %}" class="btn btn-warning" title="Прибрати з закладок">
-                                <i class="fas fa-bookmark"></i>
-                            </a>
-                        {% else %}
-                            <a href="{% url 'toggle_bookmark' pub.pk %}" class="btn btn-outline-secondary" title="В закладки">
-                                <i class="far fa-bookmark"></i>
-                            </a>
-                        {% endif %}
+                    {% if pub in user.bookmarks.all %}
+                    <a href="{% url 'toggle_bookmark' pub.pk %}" class="btn btn-warning" title="Прибрати з закладок">
+                        <i class="fas fa-bookmark"></i>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'toggle_bookmark' pub.pk %}" class="btn btn-outline-secondary" title="В закладки">
+                        <i class="far fa-bookmark"></i>
+                    </a>
+                    {% endif %}
                     {% endif %}
 
                     {% if user.is_authenticated and user == pub.author and user.is_editor or user.is_superuser %}

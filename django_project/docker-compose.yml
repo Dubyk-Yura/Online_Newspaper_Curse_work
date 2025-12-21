@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # --- СЕРВІС БАЗИ ДАНИХ (PostgreSQL) ---
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=newspaper_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    restart: always
+
+  web:
+    build: .
+    command: >
+      sh -c "python manage.py migrate &&
+             if [ ! -f .init_done ]; then
+                echo '--- FIRST RUN: Loading Data... ---' &&
+                python manage.py loaddata initial_data.json &&
+                touch .init_done;
+             else
+                echo '--- SKIP LOADING: Data already loaded ---';
+             fi &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DB_NAME=newspaper_db
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DEBUG=True
+      - SECRET_KEY=django-insecure-docker-demo-key
+
+volumes:
+  postgres_data:
