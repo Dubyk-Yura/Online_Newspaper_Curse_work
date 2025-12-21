@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Publication, Category
+from .models import Publication, Category, Comment, Rating
 
 
 @admin.register(Category)
@@ -51,3 +51,18 @@ class PublicationAdmin(admin.ModelAdmin):
                            obj.get_type_display() if hasattr(obj, 'get_type_display') else obj.type)
 
     type_badge.short_description = "Type"
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('author', 'publication', 'short_text', 'created_at')
+    search_fields = ('text', 'author__username', 'publication__title')
+    list_filter = ('created_at',)
+
+    def short_text(self, obj):
+        return obj.text[:50] + "..." if len(obj.text) > 50 else obj.text
+    short_text.short_description = "Comment"
+
+@admin.register(Rating)
+class RatingAdmin(admin.ModelAdmin):
+    list_display = ('publication', 'user', 'value')
+    list_filter = ('value',)

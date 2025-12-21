@@ -1,9 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.core.paginator import Paginator
 from django.db.models import Avg
 from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Q
 
 from apps.subscriptions.models import UserSubscription
 from core.singleton import SystemConfig
@@ -25,20 +25,37 @@ def articles_by_category(request, slug):
 
 
 def home_page(request):
-    all_news = Publication.objects.all().order_by('-created_at')
+    """
+    Render main page with news list and Search Logic
+    """
+    news_list = Publication.objects.all().order_by('-created_at')
 
-    paginator = Paginator(all_news, 10)
+    query = request.GET.get('q')
+    search_message = None
 
+    if query:
+        news_list = news_list.filter(
+            Q(title__icontains=query) |
+            Q(content__icontains=query)
+        )
+        if not news_list.exists():
+             search_message = f"За запитом '{query}' нічого не знайдено."
+        else:
+             search_message = f"Результати пошуку для: '{query}'"
+
+    from django.core.paginator import Paginator
+    paginator = Paginator(news_list, 8)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
     config = SystemConfig.get_instance()
 
     context = {
-        'page_obj': page_obj,
         'news_list': page_obj,
+        'page_obj': page_obj,
         'site_price': config.base_subscription_price,
-        'maintenance': config.maintenance_mode
+        'maintenance': config.maintenance_mode,
+        'page_title': search_message if search_message else "Свіжі новини"
     }
 
     return render(request, 'content/home.html', context)

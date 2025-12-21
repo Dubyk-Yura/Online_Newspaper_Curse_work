@@ -65,6 +65,15 @@
             <li class="nav-item"><a href="{% url 'register' %}" class="nav-link link-primary">Реєстрація</a></li>
             {% endif %}
         </ul>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 ms-auto" role="search" action="{% url 'home' %}">
+            <div class="input-group">
+                <input type="search" name="q" class="form-control" placeholder="Пошук новин..." aria-label="Search"
+                       value="{{ request.GET.q }}">
+                <button class="btn btn-outline-primary" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
     </header>
 </div>
 
