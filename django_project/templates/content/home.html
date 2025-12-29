@@ -79,6 +79,16 @@
         </div>
         {% endif %}
         {% for pub in news_list %}
+            {% if forloop.counter == 3 %}
+            {% if not user.is_authenticated or not user.subscription.is_active or user.subscription.plan.strategy_type == 'student' %}
+            <div class="col-12 mb-4">
+                <div class="ad-banner" style="height: 150px; background-color: #fff3cd; border-color: #ffecb5;">
+                    <span style="background: #ffeeba;">Партнерський матеріал</span>
+                    <a href="{% url 'pricing' %}" class="btn btn-sm btn-outline-warning mt-2">Прибрати рекламу</a>
+                </div>
+            </div>
+            {% endif %}
+        {% endif %}
         <div class="col-md-6 mb-4 news-item">
             <div class="h-100 p-4 bg-white border rounded-3 shadow-sm d-flex flex-column">
                 <div class="mb-2">
