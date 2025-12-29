@@ -17,8 +17,9 @@ class CustomUserAdmin(UserAdmin):
         ('Role Permissions', {'fields': ('is_editor', 'is_admin')}),
     )
 
-    @admin.action(description="📩 Надіслати дайджест обраним користувачам")
+    @admin.action(description="Надіслати дайджест обраним користувачам")
     def send_digest_to_selected(self, request, queryset):
+        global output
         old_stdout = sys.stdout
         sys.stdout = buffer = io.StringIO()
 
@@ -35,3 +36,4 @@ class CustomUserAdmin(UserAdmin):
 
         finally:
             sys.stdout = old_stdout
+            print(output)
