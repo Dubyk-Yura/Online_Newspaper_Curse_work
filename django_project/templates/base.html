@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Online Newspaper{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
+        .ad-banner {
+        background-color: #e9ecef;
+        border: 2px dashed #adb5bd;
+        color: #6c757d;
+        text-align: center;
+        padding: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .ad-banner span {
+        font-size: 0.8rem;
+        background: #dee2e6;
+        padding: 2px 8px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+    </style>
+</head>
+<body class="bg-light">
+
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <span class="fs-4 fw-bold">Online Newspaper Daily</span>
+        </a>
+
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Головна</a></li>
+            <li class="nav-item"><a href="{% url 'pricing' %}" class="nav-link">Тарифи</a></li>
+            {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle link-dark" href="#" role="button" data-bs-toggle="dropdown">
+                    Рубрики
+                </a>
+                <ul class="dropdown-menu">
+                    {% for cat in all_categories %}
+                    <li><a class="dropdown-item" href="{% url 'articles_by_category' cat.slug %}">{{ cat.name }}</a>
+                    </li>
+                    {% endfor %}
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'home' %}">Всі новини</a></li>
+                </ul>
+            </li>
+            <a href="{% url 'profile' %}" class="nav-link">Мій Профіль ({{ user.username }})</a>
+            {% if user.is_staff %}
+            <li class="nav-item"><a href="/admin/" class="nav-link link-dark">Адмін-панель</a></li>
+            {% endif %}
+            {% if user.is_authenticated and user.is_editor %}
+            <li class="nav-item">
+                <a href="{% url 'add_publication' %}" class="nav-link text-success fw-bold">➕ Додати новину</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+                <form action="{% url 'logout' %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-link link-secondary">Вийти</button>
+                </form>
+            </li>
+            {% else %}
+            <li class="nav-item"><a href="{% url 'login' %}" class="nav-link link-dark">Увійти</a></li>
+            <li class="nav-item"><a href="{% url 'register' %}" class="nav-link link-primary">Реєстрація</a></li>
+            {% endif %}
+        </ul>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 ms-auto" role="search" action="{% url 'home' %}">
+            <div class="input-group">
+                <input type="search" name="q" class="form-control" placeholder="Пошук новин..." aria-label="Search"
+                       value="{{ request.GET.q }}">
+                <button class="btn btn-outline-primary" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+    </header>
+</div>
+
+<main>
+{% if not user.is_authenticated or not user.subscription.is_active or user.subscription.plan.strategy_type == 'student' %}
+    <div class="container mt-3">
+        <div class="ad-banner" style="height: 120px;">
+            <span>Реклама</span>
+            <small class="text-muted fw-normal text-lowercase"></small>
+            <small class="text-muted fw-normal text-lowercase"></small>
+
+        </div>
+    </div>
+    {% endif %}
+    {% block content %}
+    {% endblock %}
+</main>
+
+<div class="container">
+    <footer class="py-3 my-4 border-top">
+        <p class="text-center text-muted">&copy; 2025 Online Newspaper</p>
+    </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

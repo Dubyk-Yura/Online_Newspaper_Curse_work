@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Тарифи - Online Newspaper{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <h1 class="display-4 fw-normal">Наші Тарифи</h1>
+        <p class="fs-5 text-muted">Оберіть план підписки, щоб отримати доступ до ексклюзивних новин та аналітики.</p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center justify-content-center">
+        {% for plan in plans %}
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm {% if user.subscription.plan == plan %}border-primary{% endif %}">
+                <div class="card-header py-3 {% if user.subscription.plan == plan %}bg-primary text-white{% endif %}">
+                    <h4 class="my-0 fw-normal">{{ plan.name }}</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">
+                        {{ plan.calculate_actual_price|floatformat:0 }} <small class="text-muted fw-light">грн</small>
+                    </h1>
+
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>Тривалість: {{ plan.duration_days }} днів</li>
+                        <li>Доступ до всіх новин</li>
+                        {% if plan.strategy_type == 'premium' %}
+                        <li><strong>Ексклюзивний контент</strong></li>
+                        {% endif %}
+                    </ul>
+
+                    {% if user.is_authenticated %}
+
+                    {% if user.subscription.plan == plan %}
+
+                    {% if user.subscription.is_active %}
+                    <button type="button" class="w-100 btn btn-lg btn-outline-success" disabled>
+                        Ваш поточний план
+                    </button>
+                    {% else %}
+                    <a href="{% url 'subscribe' plan.id %}" class="w-100 btn btn-lg btn-warning">
+                        Поновити підписку
+                    </a>
+                    {% endif %}
+
+                    {% else %}
+                    <a href="{% url 'subscribe' plan.id %}" class="w-100 btn btn-lg btn-primary">
+                        Обрати цей план
+                    </a>
+                    {% endif %}
+
+                    {% else %}
+                    <a href="{% url 'login' %}" class="w-100 btn btn-lg btn-outline-secondary">Увійдіть для покупки</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

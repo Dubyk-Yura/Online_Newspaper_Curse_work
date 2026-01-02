@@ -1,0 +1,196 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-13 15:51+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+
+#: .\apps\content\apps.py:8
+#, fuzzy
+#| msgid "Add Publication"
+msgid "Content and Publications"
+msgstr "Додати Публікацію"
+
+#: .\apps\content\models.py:9 .\apps\subscriptions\models.py:9
+msgid "Name"
+msgstr "Назва"
+
+#: .\apps\content\models.py:10
+msgid "Slug"
+msgstr "URL-ідентифікатор (Slug)"
+
+#: .\apps\content\models.py:17 .\apps\content\models.py:31
+msgid "Category"
+msgstr "Рубрика"
+
+#: .\apps\content\models.py:18
+msgid "Categories"
+msgstr "Рубрики"
+
+#: .\apps\content\models.py:26
+msgid "Title"
+msgstr "Заголовок"
+
+#: .\apps\content\models.py:27
+msgid "Content"
+msgstr "Вміст"
+
+#: .\apps\content\models.py:28
+msgid "Created At"
+msgstr "Створено"
+
+#: .\apps\content\models.py:30
+msgid "Author"
+msgstr "Автор"
+
+#: .\apps\content\models.py:33
+msgid "Exclusive"
+msgstr "Ексклюзивний матеріал"
+
+#: .\apps\content\models.py:34
+msgid "Breaking News"
+msgstr "Термінова новина"
+
+#: .\apps\content\models.py:35
+msgid "Urgency Level"
+msgstr "Рівень терміновості"
+
+#: .\apps\content\models.py:36 .\apps\subscriptions\models.py:32
+msgid "Type"
+msgstr "Тип"
+
+#: .\apps\content\models.py:52
+msgid "Publication"
+msgstr "Публікацію"
+
+#: .\apps\content\models.py:53
+msgid "Publications"
+msgstr "Публікації"
+
+#: .\apps\subscriptions\apps.py:8
+msgid "Subscriptions and Payments"
+msgstr "Тарифні плани"
+
+#: .\apps\subscriptions\models.py:10
+msgid "Base Price"
+msgstr "Базова ціна"
+
+#: .\apps\subscriptions\models.py:11
+msgid "Duration (days)"
+msgstr "Тривалість (днів)"
+
+#: .\apps\subscriptions\models.py:17
+msgid "Subscription Plan"
+msgstr "Тарифний план"
+
+#: .\apps\subscriptions\models.py:18
+msgid "Subscription Plans"
+msgstr "Тарифні плани"
+
+#: .\apps\subscriptions\models.py:26
+msgid "Student"
+msgstr "Студентський"
+
+#: .\apps\subscriptions\models.py:27
+msgid "Corporate"
+msgstr "Корпоративний"
+
+#: .\apps\subscriptions\models.py:28
+msgid "Premium"
+msgstr "Преміум"
+
+#: .\apps\subscriptions\models.py:31 .\apps\users\models.py:39
+msgid "User"
+msgstr "Користувач"
+
+#: .\apps\subscriptions\models.py:33
+msgid "Is Active"
+msgstr "Активна"
+
+#: .\apps\subscriptions\models.py:34
+msgid "Expiration Date"
+msgstr "Дата закінчення"
+
+#: .\apps\subscriptions\models.py:57
+msgid "User Subscription"
+msgstr "Підписку користувача"
+
+#: .\apps\subscriptions\models.py:58
+msgid "User Subscriptions"
+msgstr "Підписки користувачів"
+
+#: .\apps\users\apps.py:8
+msgid "Users and Access"
+msgstr "Користувачі та Доступ"
+
+#: .\apps\users\models.py:15
+msgid "Editor"
+msgstr "Редактор"
+
+#: .\apps\users\models.py:16
+msgid "Administrator"
+msgstr "Адміністратор"
+
+#: .\apps\users\models.py:20
+msgid "groups"
+msgstr "групи"
+
+#: .\apps\users\models.py:22
+msgid "The groups this user belongs to."
+msgstr "Групи, до яких належить цей користувач."
+
+#: .\apps\users\models.py:27
+msgid "user permissions"
+msgstr "права користувача"
+
+#: .\apps\users\models.py:29
+msgid "Specific permissions for this user."
+msgstr "Специфічні права для цього користувача."
+
+#: .\apps\users\models.py:40
+msgid "Users"
+msgstr "Користувачі"
+
+#: .\config\apps.py:8
+msgid "System Settings"
+msgstr "Системні Налаштування"
+
+#: .\config\models.py:10
+msgid "Base Subscription Price"
+msgstr "Базова ціна підписки"
+
+#: .\config\models.py:11
+msgid "Maintenance Mode"
+msgstr "Режим технічного обслуговування"
+
+#: .\config\models.py:20
+msgid "Global System Setting"
+msgstr "Глобальне налаштування"
+
+#: .\config\models.py:21
+msgid "Global System Settings"
+msgstr "Глобальні системні налаштування"
+
+#: .\config\settings.py:24
+msgid "Ukrainian"
+msgstr "Українська"
+
+#: .\config\settings.py:25
+msgid "English"
+msgstr "Англійська"

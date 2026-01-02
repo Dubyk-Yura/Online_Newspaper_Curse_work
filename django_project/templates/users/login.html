@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-4">Вхід у систему</h3>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    
+                    <button type="submit" class="btn btn-primary w-100 mt-3">Увійти</button>
+                </form>
+                
+                <p class="text-center mt-3">
+                    Ще не маєте акаунту? <a href="{% url 'register' %}">Зареєструватися</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

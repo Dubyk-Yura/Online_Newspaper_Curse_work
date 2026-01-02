@@ -1,0 +1,777 @@
+[
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2025-12-21T20:57:43.555Z",
+        "user": 2,
+        "content_type": 11,
+        "object_id": "1",
+        "object_repr": "Преміум (~500.00 UAH)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2025-12-21T20:58:05.497Z",
+        "user": 2,
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "System Configuration",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Base Subscription Price\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2025-12-21T20:58:21.071Z",
+        "user": 2,
+        "content_type": 11,
+        "object_id": "1",
+        "object_repr": "Преміум (~500.00 UAH)",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Pricing Mode\", \"Value (Price or %)\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2025-12-21T20:58:27.456Z",
+        "user": 2,
+        "content_type": 11,
+        "object_id": "1",
+        "object_repr": "Преміум (~10000.00 UAH)",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Value (Price or %)\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2025-12-21T20:58:32.735Z",
+        "user": 2,
+        "content_type": 11,
+        "object_id": "1",
+        "object_repr": "Преміум (~500.00 UAH)",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Value (Price or %)\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2025-12-21T20:58:38.953Z",
+        "user": 2,
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "System Configuration",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Base Subscription Price\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2025-12-21T20:58:50.268Z",
+        "user": 2,
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "System Configuration",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Base Subscription Price\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2025-12-21T20:59:25.723Z",
+        "user": 2,
+        "content_type": 11,
+        "object_id": "2",
+        "object_repr": "Студентський (~250.00 UAH)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2025-12-21T20:59:49.299Z",
+        "user": 2,
+        "content_type": 11,
+        "object_id": "3",
+        "object_repr": "Корпоративний (~0.00 UAH)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2025-12-21T21:40:59.586Z",
+        "user": 2,
+        "content_type": 13,
+        "object_id": "1",
+        "object_repr": "Yura",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Editor\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2025-12-21T21:41:33.088Z",
+        "user": 2,
+        "content_type": 13,
+        "object_id": "3",
+        "object_repr": "Oleh",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2025-12-21T21:41:38.874Z",
+        "user": 2,
+        "content_type": 13,
+        "object_id": "3",
+        "object_repr": "Oleh",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Editor\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2025-12-21T21:42:30.836Z",
+        "user": 2,
+        "content_type": 13,
+        "object_id": "4",
+        "object_repr": "Petro",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2025-12-21T21:42:43.118Z",
+        "user": 2,
+        "content_type": 13,
+        "object_id": "4",
+        "object_repr": "Petro",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Editor\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2025-12-21T21:47:29.422Z",
+        "user": 2,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "Спорт",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2025-12-21T21:47:37.606Z",
+        "user": 2,
+        "content_type": 7,
+        "object_id": "2",
+        "object_repr": "IT",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2025-12-21T21:47:57.790Z",
+        "user": 2,
+        "content_type": 7,
+        "object_id": "3",
+        "object_repr": "Політика",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2025-12-21T22:53:17.787Z",
+        "user": 2,
+        "content_type": 12,
+        "object_id": "4",
+        "object_repr": "Yura2 - Студентський",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "m1net90spx9u3k3f1gx3wrp8lfosi37x",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGlmO_6Gk5wzW7nqNA8iR4qRC3B0ipYD2zcx7iQTbWtPWeUlTFmfhxOl3Q6AHtx3kO7TbLGlu6zKh3BV50C6vc-bn5XD_Dir0-q2xkC8lFhisp6xDACQKVmkTcNQuskHlg8PREMbsIkLggoMiw8jOWPH-AAykOMc:1vXSIU:U0SfUZXwtZUdyL2o6_q4y4nJKs6rDKSr2LgLCeIrXcQ",
+        "expire_date": "2026-01-04T22:53:06.974Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "r93hv2kkqpu9gxlz7bay1s9babcc04er",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hALFAaX7nsGMsOAVA0kpV0Z765NutDtf-_9lwi4rSVsPS1hZnERSpx-N8L4SHUHfMd6azK2ui4zyV2RB-1yapye18P9OyjYy7cmg0pbQkMuOh89cAbwGQhzShb1CKzHNOghn8lna9gqVMiKADM41OL9AQbBONM:1vXQQT:IzYgPL7z_bsu0HVet2x5Qm1lec7CL4vBz_hVKFoABY8",
+        "expire_date": "2026-01-04T20:53:13.450Z"
+    }
+},
+{
+    "model": "config.globalsettings",
+    "pk": 1,
+    "fields": {
+        "base_subscription_price": "500.00",
+        "maintenance_mode": false
+    }
+},
+{
+    "model": "content.category",
+    "pk": 1,
+    "fields": {
+        "name": "Спорт",
+        "slug": "sport"
+    }
+},
+{
+    "model": "content.category",
+    "pk": 2,
+    "fields": {
+        "name": "IT",
+        "slug": "it"
+    }
+},
+{
+    "model": "content.category",
+    "pk": 3,
+    "fields": {
+        "name": "Політика",
+        "slug": "politika"
+    }
+},
+{
+    "model": "content.publication",
+    "pk": 1,
+    "fields": {
+        "title": "Український футбол: підсумки ігрового туру чемпіонату",
+        "content": "Черговий тур національного футбольного чемпіонату приніс уболівальникам чимало напружених матчів і несподіваних результатів. Команди з верхньої частини турнірної таблиці продовжують боротьбу за лідерство, тоді як клуби з нижніх позицій намагаються покращити своє становище.\r\n\r\nОсобливу увагу привернув матч між принциповими суперниками, у якому вирішальною стала реалізація моментів у другому таймі. Тренери команд після гри відзначили важливість дисципліни та фізичної підготовки гравців.\r\n\r\nЗа підсумками туру турнірна ситуація залишається напруженою, а боротьба за чемпіонський титул та єврокубкові місця триває.",
+        "created_at": "2025-12-21T21:48:55.350Z",
+        "author": 3,
+        "category": 1,
+        "is_exclusive": false,
+        "is_breaking": false,
+        "urgency_level": 0,
+        "type": "article"
+    }
+},
+{
+    "model": "content.publication",
+    "pk": 2,
+    "fields": {
+        "title": "Масштабний збій у роботі популярних хмарних сервісів",
+        "content": "Сьогодні вранці користувачі з різних країн повідомили про масштабні перебої в роботі популярних хмарних сервісів. Проблеми торкнулися доступу до вебдодатків, зберігання даних та корпоративних онлайн-платформ.\r\n\r\nЗа попередньою інформацією, збій може бути пов’язаний із проблемами в мережевій інфраструктурі одного з великих провайдерів. Представники компаній вже підтвердили наявність проблеми та повідомили, що фахівці працюють над її усуненням.\r\n\r\nКористувачам рекомендують зберігати важливі дані локально та стежити за офіційними повідомленнями. Очікується, що додаткова інформація буде оприлюднена найближчим часом.",
+        "created_at": "2025-12-21T21:49:40.760Z",
+        "author": 3,
+        "category": 2,
+        "is_exclusive": false,
+        "is_breaking": true,
+        "urgency_level": 5,
+        "type": "breaking_news"
+    }
+},
+{
+    "model": "content.publication",
+    "pk": 3,
+    "fields": {
+        "title": "Парламент розглядає пакет законопроєктів щодо економічного розвитку",
+        "content": "У Верховній Раді триває розгляд пакета законопроєктів, спрямованих на стимулювання економічного розвитку та підтримку бізнесу. Ініціативи передбачають спрощення регуляторних процедур, а також удосконалення податкових механізмів для підприємців.\r\n\r\nПредставники профільних комітетів наголошують, що запропоновані зміни мають створити сприятливі умови для інвестицій та зростання зайнятості. Водночас частина експертів закликає до детального аналізу можливих ризиків та наслідків ухвалення рішень.\r\n\r\nОбговорення законопроєктів триватиме у комітетах перед винесенням їх на голосування в сесійній залі.",
+        "created_at": "2025-12-21T21:50:40.895Z",
+        "author": 3,
+        "category": 3,
+        "is_exclusive": true,
+        "is_breaking": false,
+        "urgency_level": 0,
+        "type": "article"
+    }
+},
+{
+    "model": "content.publication",
+    "pk": 4,
+    "fields": {
+        "title": "Сучасні тенденції міського життя",
+        "content": "Міста продовжують змінюватися під впливом технологій, демографічних процесів та соціальних запитів мешканців. Все більше уваги приділяється розвитку громадських просторів, екологічним рішенням та доступності інфраструктури.\r\n\r\nЕксперти зазначають, що комфортне міське середовище має враховувати потреби різних груп населення, включаючи людей з інвалідністю, молодь та літніх громадян. У багатьох містах впроваджуються проєкти, спрямовані на покращення якості життя та залучення мешканців до прийняття рішень.\r\n\r\nТакі зміни поступово формують новий підхід до організації міського простору.",
+        "created_at": "2025-12-21T21:51:58.106Z",
+        "author": 3,
+        "category": null,
+        "is_exclusive": false,
+        "is_breaking": false,
+        "urgency_level": 0,
+        "type": "article"
+    }
+},
+{
+    "model": "content.publication",
+    "pk": 5,
+    "fields": {
+        "title": "Молоді спортсмени здобули медалі на всеукраїнських змаганнях",
+        "content": "У Києві відбулися всеукраїнські змагання серед юнаків та юніорів, які зібрали учасників з різних регіонів країни. Молоді спортсмени продемонстрували високий рівень підготовки та волю до перемоги.\r\n\r\nЗмагання проходили у напруженій боротьбі, а багато фіналів вирішувалися з мінімальною перевагою. Тренери відзначають, що такі турніри є важливим етапом у розвитку майбутніх професійних атлетів.\r\n\r\nОрганізатори підкреслили значення підтримки дитячого та юнацького спорту для формування здорового та активного покоління.",
+        "created_at": "2025-12-21T21:54:33.551Z",
+        "author": 1,
+        "category": 1,
+        "is_exclusive": true,
+        "is_breaking": true,
+        "urgency_level": 5,
+        "type": "breaking_news"
+    }
+},
+{
+    "model": "content.publication",
+    "pk": 6,
+    "fields": {
+        "title": "Кібербезпека стає пріоритетом для бізнесу у 2025 році",
+        "content": "Зі зростанням кількості цифрових сервісів питання кібербезпеки набуває особливої актуальності. Компанії інвестують значні ресурси у захист даних, оскільки кібератаки можуть призводити до фінансових втрат і втрати довіри клієнтів.\r\n\r\nФахівці відзначають збільшення кількості фішингових атак та спроб несанкціонованого доступу до корпоративних систем. У відповідь бізнес впроваджує багаторівневі системи захисту, навчання персоналу та регулярні аудити безпеки.\r\n\r\nЕксперти радять розглядати кібербезпеку не як разовий захід, а як постійний процес, що потребує оновлення та адаптації до нових загроз.",
+        "created_at": "2025-12-21T21:56:47.501Z",
+        "author": 1,
+        "category": 2,
+        "is_exclusive": false,
+        "is_breaking": false,
+        "urgency_level": 0,
+        "type": "article"
+    }
+},
+{
+    "model": "content.publication",
+    "pk": 7,
+    "fields": {
+        "title": "Міжнародні партнери обговорили подальшу співпрацю з Україною",
+        "content": "Під час чергової міжнародної зустрічі представники України та країн-партнерів обговорили перспективи подальшої політичної та економічної співпраці. Основну увагу було приділено питанням безпеки, реформ та відновлення інфраструктури.\r\n\r\nСторони підтвердили готовність до продовження діалогу та координації спільних дій. За словами учасників зустрічі, стабільність регіону та дотримання міжнародних домовленостей залишаються ключовими пріоритетами.\r\n\r\nОчікується, що досягнуті домовленості стануть основою для подальших рішень на міждержавному рівні.",
+        "created_at": "2025-12-21T22:01:28.280Z",
+        "author": 1,
+        "category": 3,
+        "is_exclusive": false,
+        "is_breaking": true,
+        "urgency_level": 5,
+        "type": "breaking_news"
+    }
+},
+{
+    "model": "content.publication",
+    "pk": 8,
+    "fields": {
+        "title": "Освіта в умовах цифрових трансформацій",
+        "content": "Система освіти переживає період активних змін, пов’язаних із впровадженням цифрових технологій. Онлайн-платформи, дистанційне навчання та інтерактивні інструменти стають невід’ємною частиною освітнього процесу.\r\n\r\nВикладачі та студенти відзначають зручність доступу до навчальних матеріалів і можливість гнучкого планування часу. Водночас експерти наголошують на важливості поєднання цифрових форматів із традиційним навчанням для збереження якості освіти.\r\n\r\nПодальший розвиток освіти залежатиме від здатності адаптуватися до нових умов та потреб суспільства.",
+        "created_at": "2025-12-21T22:04:37.007Z",
+        "author": 1,
+        "category": null,
+        "is_exclusive": false,
+        "is_breaking": false,
+        "urgency_level": 0,
+        "type": "article"
+    }
+},
+{
+    "model": "content.publication",
+    "pk": 9,
+    "fields": {
+        "title": "Вплив інформаційного простору на повсякденне життя",
+        "content": "Інформаційний простір відіграє дедалі важливішу роль у формуванні світогляду та повсякденних рішень людей. Новини, соціальні мережі та цифрові платформи визначають теми для обговорення та впливають на суспільні настрої.\r\n\r\nФахівці звертають увагу на необхідність медіаграмотності та критичного мислення. Уміння аналізувати джерела інформації та відокремлювати факти від маніпуляцій стає ключовою навичкою сучасної людини.\r\n\r\nУ відповідь на ці виклики зростає інтерес до якісного та відповідального медіаконтенту.",
+        "created_at": "2025-12-21T22:07:00.553Z",
+        "author": 4,
+        "category": null,
+        "is_exclusive": true,
+        "is_breaking": false,
+        "urgency_level": 0,
+        "type": "article"
+    }
+},
+{
+    "model": "content.publication",
+    "pk": 10,
+    "fields": {
+        "title": "Громадська думка впливає на формування державної політики",
+        "content": "Експерти зазначають, що роль громадської думки у процесі формування державної політики останніми роками суттєво зросла. Завдяки розвитку цифрових платформ громадяни отримали більше можливостей для участі в обговоренні суспільно важливих рішень.\r\n\r\nСоціологічні опитування, публічні консультації та відкриті дискусії дедалі частіше використовуються як інструменти зворотного зв’язку між владою та суспільством. Водночас аналітики наголошують на важливості критичного ставлення до інформації та відповідального використання соціальних мереж.\r\n\r\nФахівці підкреслюють, що ефективна державна політика потребує балансу між експертним підходом і врахуванням позиції громадян.",
+        "created_at": "2025-12-21T22:07:19.786Z",
+        "author": 4,
+        "category": 3,
+        "is_exclusive": false,
+        "is_breaking": false,
+        "urgency_level": 0,
+        "type": "article"
+    }
+},
+{
+    "model": "content.publication",
+    "pk": 11,
+    "fields": {
+        "title": "Штучний інтелект змінює підхід до розробки програмного забезпечення",
+        "content": "Сучасні інструменти на основі штучного інтелекту дедалі активніше використовуються у сфері розробки програмного забезпечення. Вони допомагають автоматизувати рутинні завдання, аналізувати код та виявляти помилки на ранніх етапах створення продуктів.\r\n\r\nКомпанії відзначають, що застосування таких рішень дозволяє скоротити час розробки та підвищити якість програм. Водночас експерти наголошують на необхідності контролю результатів роботи алгоритмів і дотримання етичних стандартів у використанні нових технологій.\r\n\r\nОчікується, що роль штучного інтелекту в IT-сфері й надалі зростатиме, змінюючи вимоги до навичок розробників і структуру команд.",
+        "created_at": "2025-12-21T22:07:39.658Z",
+        "author": 4,
+        "category": 2,
+        "is_exclusive": false,
+        "is_breaking": false,
+        "urgency_level": 0,
+        "type": "article"
+    }
+},
+{
+    "model": "content.publication",
+    "pk": 12,
+    "fields": {
+        "title": "Фізична активність як ключ до здорового способу життя",
+        "content": "Регулярні заняття спортом відіграють важливу роль у підтриманні фізичного та психологічного здоров’я. Фахівці наголошують, що навіть помірна активність, така як біг, плавання або їзда на велосипеді, позитивно впливає на організм.\r\n\r\nОкрім фізичних переваг, спорт сприяє зниженню рівня стресу та покращенню загального самопочуття. Саме тому дедалі більше людей обирають активний спосіб життя та долучаються до спортивних спільнот.\r\n\r\nЕксперти рекомендують поєднувати фізичні навантаження з правильним харчуванням і достатнім відпочинком для досягнення найкращих результатів.",
+        "created_at": "2025-12-21T22:08:24.251Z",
+        "author": 4,
+        "category": 1,
+        "is_exclusive": false,
+        "is_breaking": false,
+        "urgency_level": 0,
+        "type": "article"
+    }
+},
+{
+    "model": "content.comment",
+    "pk": 1,
+    "fields": {
+        "publication": 12,
+        "author": 3,
+        "text": "Цікава стаття.",
+        "created_at": "2025-12-21T22:48:06.537Z"
+    }
+},
+{
+    "model": "content.comment",
+    "pk": 2,
+    "fields": {
+        "publication": 6,
+        "author": 3,
+        "text": "Цікава стаття2",
+        "created_at": "2025-12-21T22:48:20.264Z"
+    }
+},
+{
+    "model": "content.comment",
+    "pk": 3,
+    "fields": {
+        "publication": 8,
+        "author": 3,
+        "text": "Цікава стаття3",
+        "created_at": "2025-12-21T22:48:32.502Z"
+    }
+},
+{
+    "model": "content.comment",
+    "pk": 4,
+    "fields": {
+        "publication": 10,
+        "author": 4,
+        "text": "Інформативна стаття.",
+        "created_at": "2025-12-21T22:51:57.204Z"
+    }
+},
+{
+    "model": "content.comment",
+    "pk": 5,
+    "fields": {
+        "publication": 1,
+        "author": 4,
+        "text": "Інформативна стаття.",
+        "created_at": "2025-12-21T22:52:03.675Z"
+    }
+},
+{
+    "model": "content.comment",
+    "pk": 6,
+    "fields": {
+        "publication": 6,
+        "author": 4,
+        "text": "Інформативна стаття2",
+        "created_at": "2025-12-21T22:52:15.408Z"
+    }
+},
+{
+    "model": "content.rating",
+    "pk": 1,
+    "fields": {
+        "publication": 7,
+        "user": 5,
+        "value": 5
+    }
+},
+{
+    "model": "content.rating",
+    "pk": 2,
+    "fields": {
+        "publication": 12,
+        "user": 5,
+        "value": 5
+    }
+},
+{
+    "model": "content.rating",
+    "pk": 3,
+    "fields": {
+        "publication": 10,
+        "user": 5,
+        "value": 5
+    }
+},
+{
+    "model": "content.rating",
+    "pk": 4,
+    "fields": {
+        "publication": 5,
+        "user": 5,
+        "value": 5
+    }
+},
+{
+    "model": "content.rating",
+    "pk": 5,
+    "fields": {
+        "publication": 12,
+        "user": 3,
+        "value": 4
+    }
+},
+{
+    "model": "content.rating",
+    "pk": 6,
+    "fields": {
+        "publication": 7,
+        "user": 3,
+        "value": 2
+    }
+},
+{
+    "model": "subscriptions.subscriptionplan",
+    "pk": 1,
+    "fields": {
+        "name": "Преміум",
+        "price_mode": "percentage",
+        "value": "100.00",
+        "duration_days": 30,
+        "strategy_type": "premium"
+    }
+},
+{
+    "model": "subscriptions.subscriptionplan",
+    "pk": 2,
+    "fields": {
+        "name": "Студентський",
+        "price_mode": "percentage",
+        "value": "50.00",
+        "duration_days": 30,
+        "strategy_type": "student"
+    }
+},
+{
+    "model": "subscriptions.subscriptionplan",
+    "pk": 3,
+    "fields": {
+        "name": "Корпоративний",
+        "price_mode": "fixed",
+        "value": "0.00",
+        "duration_days": 365,
+        "strategy_type": "corporate"
+    }
+},
+{
+    "model": "subscriptions.usersubscription",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "plan": 1,
+        "is_active": true,
+        "expire_date": "2026-01-20"
+    }
+},
+{
+    "model": "subscriptions.usersubscription",
+    "pk": 2,
+    "fields": {
+        "user": 2,
+        "plan": 1,
+        "is_active": true,
+        "expire_date": "2026-01-20"
+    }
+},
+{
+    "model": "subscriptions.usersubscription",
+    "pk": 3,
+    "fields": {
+        "user": 4,
+        "plan": 1,
+        "is_active": true,
+        "expire_date": "2026-01-20"
+    }
+},
+{
+    "model": "subscriptions.usersubscription",
+    "pk": 5,
+    "fields": {
+        "user": 5,
+        "plan": 1,
+        "is_active": true,
+        "expire_date": "2026-01-20"
+    }
+},
+{
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$OmL2rFs1y7wMhtb996vGlT$SBbGrS9+XHmVswcSJPnih+JE9Lv/GRsElV7AsIph0E0=",
+        "last_login": "2025-12-21T21:52:44.906Z",
+        "is_superuser": false,
+        "username": "Yura",
+        "first_name": "",
+        "last_name": "",
+        "email": "yura@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-12-21T20:50:45Z",
+        "is_editor": true,
+        "is_admin": false,
+        "groups": [],
+        "user_permissions": [],
+        "following": [],
+        "bookmarks": [
+            3
+        ]
+    }
+},
+{
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$JDjHHgireQjE0utNq8f4TH$rHn1qJQhcGMvZDwyslMEo6Rjk5i+aBMLFqG9fKjbuN4=",
+        "last_login": "2025-12-21T20:53:13.450Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-12-21T20:52:45.406Z",
+        "is_editor": false,
+        "is_admin": true,
+        "groups": [],
+        "user_permissions": [],
+        "following": [
+            1
+        ],
+        "bookmarks": []
+    }
+},
+{
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$WH0wWSwzsAiIgMsVIhxJ5K$hhBXwxB37Wn21aRqna68LnAU5agWqINkPzGYBtQLTak=",
+        "last_login": "2025-12-21T22:46:23.042Z",
+        "is_superuser": false,
+        "username": "Oleh",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-12-21T21:41:32Z",
+        "is_editor": true,
+        "is_admin": false,
+        "groups": [],
+        "user_permissions": [],
+        "following": [
+            1
+        ],
+        "bookmarks": [
+            10,
+            8,
+            9
+        ]
+    }
+},
+{
+    "model": "users.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$4d5eO8iG3MXlQ3Usza1tcI$xGsljubhVVquo0LiSk5DoHigG+pxm8aMBiK9Q4V5YIs=",
+        "last_login": "2025-12-21T22:49:03.783Z",
+        "is_superuser": false,
+        "username": "Petro",
+        "first_name": "Петро",
+        "last_name": "Петрович",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-12-21T21:42:30Z",
+        "is_editor": true,
+        "is_admin": false,
+        "groups": [],
+        "user_permissions": [],
+        "following": [],
+        "bookmarks": [
+            8
+        ]
+    }
+},
+{
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$mLVJf6mtmXJ355ZHjacPuF$4QnunZSyhmz1w9PnF0C6ePscK5QDGZwWTavqyej+OWg=",
+        "last_login": "2025-12-21T22:53:06.974Z",
+        "is_superuser": false,
+        "username": "Yura2",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-12-21T22:13:28.932Z",
+        "is_editor": false,
+        "is_admin": false,
+        "groups": [],
+        "user_permissions": [],
+        "following": [],
+        "bookmarks": [
+            10,
+            7,
+            6
+        ]
+    }
+}
+]

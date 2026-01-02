@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+
+            <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+
+                <h1 class="mb-0 me-3">{{ post.title }}</h1>
+
+                <div class="d-flex align-items-center gap-3">
+
+                    <div class="text-warning fs-4 fw-bold" title="Середній рейтинг статті">
+                        ★ {{ avg_rating|default:"0" }} <span class="text-muted fs-6">/ 5</span>
+                    </div>
+
+                    {% if user.is_authenticated %}
+                    {% if post in user.bookmarks.all %}
+                    <a href="{% url 'toggle_bookmark' post.pk %}" class="btn btn-warning shadow-sm"
+                       title="Прибрати з закладок">
+                        <i class="fas fa-bookmark"></i> <span class="d-none d-md-inline">Збережено</span>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'toggle_bookmark' post.pk %}" class="btn btn-outline-secondary shadow-sm"
+                       title="Додати в закладки">
+                        <i class="far fa-bookmark"></i> <span class="d-none d-md-inline">В закладки</span>
+                    </a>
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <p class="text-muted">
+                Автор: <strong>{{ post.author.username }}</strong>
+                {% if user.is_authenticated and user != post.author %}
+                {% if post.author in user.following.all %}
+                <a href="{% url 'toggle_follow' post.author.id %}" class="btn btn-sm btn-outline-danger ms-2">Відписатися</a>
+                {% else %}
+                <a href="{% url 'toggle_follow' post.author.id %}" class="btn btn-sm btn-outline-primary ms-2">🔔
+                    Стежити</a>
+                {% endif %}
+                {% endif %}
+                | {{ post.created_at|date:"d.m.Y H:i" }}
+            </p>
+            <hr>
+
+            {% if has_access %}
+            <div class="article-content mb-5" style="font-size: 1.1rem; line-height: 1.6;">
+                {{ post.content|linebreaks }}
+            </div>
+
+            <div class="card bg-light mb-4 border-0 rounded-3">
+                <div class="card-body d-flex align-items-center justify-content-between">
+                    <div>
+                        <h5 class="mb-0">Оцінити статтю</h5>
+                        <small class="text-muted">Ваша думка важлива для нас</small>
+                    </div>
+
+                    {% if user.is_authenticated %}
+                    {% if user_rating %}
+                    <div class="text-success fw-bold">
+                        ✓ Ви оцінили: {{ user_rating.value }} ★
+                    </div>
+                    {% else %}
+                    <form action="{% url 'rate_publication' post.pk %}" method="post" class="d-flex gap-2">
+                        {% csrf_token %}
+                        {{ rating_form.value }}
+                        <button type="submit" class="btn btn-warning">Оцінити</button>
+                    </form>
+                    {% endif %}
+                    {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-outline-secondary btn-sm">Увійдіть, щоб оцінити</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <h4 class="mb-4">Коментарі ({{ comments.count }})</h4>
+
+            {% if user.is_authenticated %}
+            <form action="{% url 'add_comment' post.pk %}" method="post" class="mb-5">
+                {% csrf_token %}
+                <div class="mb-2">
+                    {{ comment_form.text }}
+                </div>
+                <button type="submit" class="btn btn-primary">Надіслати коментар</button>
+            </form>
+            {% else %}
+            <div class="alert alert-info">
+                <a href="{% url 'login' %}">Увійдіть</a>, щоб залишити коментар.
+            </div>
+            {% endif %}
+
+            {% for comment in comments %}
+            <div class="d-flex mb-3">
+                <div class="flex-shrink-0">
+                    <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center"
+                         style="width: 40px; height: 40px;">
+                        {{ comment.author.username|first|upper }}
+                    </div>
+                </div>
+                <div class="flex-grow-1 ms-3">
+                    <h6 class="mb-0 fw-bold">{{ comment.author.username }}</h6>
+                    <small class="text-muted">{{ comment.created_at|date:"d.m.Y H:i" }}</small>
+                    <p class="mt-1 mb-0">{{ comment.text }}</p>
+                </div>
+            </div>
+            {% if not forloop.last %}
+            <hr class="opacity-25">
+            {% endif %}
+            {% empty %}
+            <p class="text-muted">Поки немає коментарів. Будьте першим!</p>
+            {% endfor %}
+
+            {% else %}
+            <div class="article-preview">
+                <p>{{ post.content|truncatewords:30 }}...</p>
+                <div class="alert alert-warning text-center mt-4 p-5">
+                    <h4>🔒 Ця стаття доступна тільки для підписників</h4>
+                    <p>Оформіть підписку, щоб читати ексклюзивні аналітичні матеріали, залишати коментарі та ставити
+                        оцінки.</p>
+                    <a href="{% url 'pricing' %}" class="btn btn-primary btn-lg mt-2">Оформити підписку</a>
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="mt-4 pb-5">
+                <a href="{% url 'home' %}" class="btn btn-outline-secondary">&larr; Назад до новин</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
